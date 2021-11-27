@@ -1,5 +1,7 @@
 package ca.sfu.bub.model;
 
+import android.widget.ImageView;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -9,11 +11,13 @@ public class Board {
     public static final int PLAYER_2 = 2;
     public static final int NO_WINNER = 0;
 
-    public Board() {
+    public Board(ImageView[] imageList) {
+        int i = 0;
         boardSpots = new BoardSpot[3][3];
         for (int col = 0; col < 3; col++) {
             for (int row = 0; row < 3; row++) {
-                boardSpots[col][row] = new BoardSpot();
+                boardSpots[col][row] = new BoardSpot(col, row, imageList[i]);
+                i++;
             }
         }
     }
@@ -36,6 +40,13 @@ public class Board {
         return result;
     }
 
+    /**
+     * Gets the winner of the game if there is one
+     * @return
+     *      PLAYER_1 (1) if player 1 wins
+     *      PLAYER_2 (2) if player 2 wins
+     *      NO_WINNER (0) if no one has won yet
+     */
     public int checkWinner() {
 
         // Check for arrangements vertically

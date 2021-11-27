@@ -17,4 +17,8 @@ public class Player {
     public Piece[] getPieces() {
         return this.pieces;
     }
+
+    public Piece getPiece(int position) {
+        return pieces[position];
+    }
 }

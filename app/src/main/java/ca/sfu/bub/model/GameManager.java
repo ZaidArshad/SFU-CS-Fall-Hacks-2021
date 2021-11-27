@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 
 public class GameManager {
     private static GameManager instance;
-    private Board board;
     private Player player1;
     private Player player2;
     private int currentTurn;
@@ -16,8 +15,9 @@ public class GameManager {
     private Bitmap imageTwo;
     private Bitmap imageThree;
 
+    private Bitmap[] images;
+
     private GameManager(Context context) {
-        this.board = new Board();
         this.player1 = new Player(PLAYER_1);
         this.player2 = new Player(PLAYER_2);
     }
@@ -27,10 +27,6 @@ public class GameManager {
             instance = new GameManager(context);
         }
         return instance;
-    }
-
-    public Board getBoard() {
-        return board;
     }
 
     public Player getPlayer1() {
@@ -45,35 +41,15 @@ public class GameManager {
         return currentTurn;
     }
 
-    private boolean placePiece(int col, int row, Piece piece) {
-        boolean eaten = board.placePiece(col,row,piece);
-        if (piece.getPlayer() == PLAYER_1) currentTurn = PLAYER_2;
-        else currentTurn = PLAYER_1;
-        return eaten;
+    public Bitmap getImage(int num) {
+        return images[num];
     }
 
-    /**
-     * Gets the winner of the game if there is one
-     * @return
-     *      PLAYER_1 (1) if player 1 wins
-     *      PLAYER_2 (2) if player 2 wins
-     *      NO_WINNER (0) if no one has won yet
-     */
-    public int getWinner() {
-        return board.checkWinner();
+    public void setImages(Bitmap[] images) {
+        this.images = images;
     }
 
-    public void setImageOne(Bitmap imageOne) {
-        this.imageOne = imageOne;
-    }
-
-    public void setImageTwo(Bitmap imageTwo) {
-        this.imageTwo = imageTwo;
-    }
-
-    public void setImageThree(Bitmap imageThree) {
-        this.imageThree = imageThree;
-    }
+    //----------------------------------------
 
     public Bitmap getImageOne() {
         return imageOne;

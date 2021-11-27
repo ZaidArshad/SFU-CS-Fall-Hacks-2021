@@ -1,5 +1,7 @@
 package ca.sfu.bub.model;
 
+import android.graphics.Bitmap;
+
 public class Piece {
     // fields
     private final int size;

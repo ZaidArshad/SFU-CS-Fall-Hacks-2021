@@ -41,6 +41,8 @@ public class ImageActivity extends AppCompatActivity {
     private Integer currentImage;
     private Integer numImages;
 
+    private Bitmap[] images;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class ImageActivity extends AppCompatActivity {
         numImages = 0;
         Button saveBtn = findViewById(R.id.save_imgs_btn);
         saveBtn.setEnabled(false);
+        images = new Bitmap[3];
 
         bigImage = findViewById(R.id.ivSelectedImage);
 
@@ -70,9 +73,12 @@ public class ImageActivity extends AppCompatActivity {
             byte[] imageTwoByte = convertImageViewToByteArray(imageTwo);
             byte[] imageThreeByte = convertImageViewToByteArray(imageThree);
 
-            gameManager.setImageOne(convertByteArrayToBitmap(imageOneByte));
-            gameManager.setImageTwo(convertByteArrayToBitmap(imageTwoByte));
-            gameManager.setImageThree(convertByteArrayToBitmap(imageThreeByte));
+            images[0] = convertByteArrayToBitmap(imageOneByte);
+            images[1] = convertByteArrayToBitmap(imageTwoByte);
+            images[2] = convertByteArrayToBitmap(imageThreeByte);
+
+            gameManager.setImages(images);
+
             Toast.makeText(ImageActivity.this, "Images saved!",Toast.LENGTH_SHORT).show();
             startBtn.setEnabled(true);
         });
@@ -130,9 +136,7 @@ public class ImageActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-        tvCancel.setOnClickListener((v) -> {
-            alertDialog.cancel();
-        });
+        tvCancel.setOnClickListener((v) -> alertDialog.cancel());
 
         cameraImg.setOnClickListener((v) -> {
             if (checkAndRequestPermissions()) {
