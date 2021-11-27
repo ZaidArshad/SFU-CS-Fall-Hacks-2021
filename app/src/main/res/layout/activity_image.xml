@@ -14,7 +14,7 @@
         android:src="@drawable/default_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/userImage2"
@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/userImage3"
         app:layout_constraintStart_toEndOf="@+id/userImage1"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/userImage3"
@@ -35,7 +35,7 @@
         android:src="@drawable/default_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <Button
         android:id="@+id/save_imgs_btn"
@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Input 3 images and then press 'SAVE IMAGES'"
+        android:text="@string/input_3_images_and_then_press_save_images"
         android:textColor="@color/black"
         android:textSize="19sp"
         android:textStyle="bold"
