@@ -2,18 +2,15 @@ package ca.sfu.bub.model;
 
 public class Piece {
     // fields
-    public int size;
-    public int owner;
-    public boolean isUsed;
-    public int xPos;
-    public int yPos;
+    private final int size;
+    private final int owner;
+    private boolean isUsed;
+    private int xPos;
+    private int yPos;
 
     // constructor
-    public Piece(int size, boolean isUsed, int row, int col, int owner) {
+    public Piece(int size, int owner) {
         this.size = size;
-        this.isUsed = isUsed;
-        this.xPos = row;
-        this.yPos = col;
         this.owner = owner;
     }
 

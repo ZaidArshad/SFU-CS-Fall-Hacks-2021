@@ -19,8 +19,8 @@ public class GameManager {
 
     private GameManager() {
         this.board = new Board();
-        this.player1 = new Player();
-        this.player2 = new Player();
+        this.player1 = new Player(PLAYER_1);
+        this.player2 = new Player(PLAYER_2);
     }
 
     public Board getBoard() {
