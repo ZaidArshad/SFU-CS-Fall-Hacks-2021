@@ -34,10 +34,6 @@
         <activity
             android:name=".activities.ImageActivity"
             android:exported="false" />
-        <activity
-            android:name=".activities.MainActivity"
-            android:exported="true">
-        </activity>
     </application>
 
 </manifest>

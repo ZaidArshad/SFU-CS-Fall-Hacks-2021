@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.util.Objects;
@@ -36,6 +37,7 @@ public class ImageActivity extends AppCompatActivity {
     private ImageView imageOne;
     private ImageView imageTwo;
     private ImageView imageThree;
+    private ImageView bigImage;
     private Integer currentImage;
     private Integer numImages;
 
@@ -51,6 +53,8 @@ public class ImageActivity extends AppCompatActivity {
         Button saveBtn = findViewById(R.id.save_imgs_btn);
         saveBtn.setEnabled(false);
 
+        bigImage = findViewById(R.id.ivSelectedImage);
+
         setUpSaveImages();
         setUpChooseImages();
         setUpStartGameBtn();
@@ -59,6 +63,8 @@ public class ImageActivity extends AppCompatActivity {
     //Convert each imageView into byte[]'s and save as attributes in GameManager.
     private void setUpSaveImages() {
         Button saveBtn = findViewById(R.id.save_imgs_btn);
+        Button startBtn = findViewById(R.id.start_game_btn);
+
         saveBtn.setOnClickListener((v) -> {
             byte[] imageOneByte = convertImageViewToByteArray(imageOne);
             byte[] imageTwoByte = convertImageViewToByteArray(imageTwo);
@@ -68,6 +74,7 @@ public class ImageActivity extends AppCompatActivity {
             gameManager.setImageTwo(convertByteArrayToBitmap(imageTwoByte));
             gameManager.setImageThree(convertByteArrayToBitmap(imageThreeByte));
             Toast.makeText(ImageActivity.this, "Images saved!",Toast.LENGTH_SHORT).show();
+            startBtn.setEnabled(true);
         });
     }
 
@@ -118,9 +125,14 @@ public class ImageActivity extends AppCompatActivity {
 
         ImageView cameraImg = dialogView.findViewById(R.id.camera_img);
         ImageView galleryImg = dialogView.findViewById(R.id.gallery_img);
+        TextView tvCancel = dialogView.findViewById(R.id.tvCancel);
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+
+        tvCancel.setOnClickListener((v) -> {
+            alertDialog.cancel();
+        });
 
         cameraImg.setOnClickListener((v) -> {
             if (checkAndRequestPermissions()) {
@@ -183,6 +195,7 @@ public class ImageActivity extends AppCompatActivity {
         else {
             imageThree.setImageURI(currentUri);
         }
+        bigImage.setImageURI(currentUri);
     }
 
     private void setImageBitmap(Bitmap currentBitmap) {
@@ -195,6 +208,7 @@ public class ImageActivity extends AppCompatActivity {
         else {
             imageThree.setImageBitmap(currentBitmap);
         }
+        bigImage.setImageBitmap(currentBitmap);
     }
 
     @SuppressLint("ObsoleteSdkInt")
@@ -250,6 +264,7 @@ public class ImageActivity extends AppCompatActivity {
 
     private void setUpStartGameBtn() {
         Button startBtn = findViewById(R.id.start_game_btn);
+        startBtn.setEnabled(false);
         startBtn.setOnClickListener((v) -> {
             Intent intent = GameScreen.makeIntent(this);
             startActivity(intent);
