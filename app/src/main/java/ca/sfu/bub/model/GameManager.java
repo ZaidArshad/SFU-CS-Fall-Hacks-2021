@@ -74,4 +74,16 @@ public class GameManager {
     public void setImageThree(Bitmap imageThree) {
         this.imageThree = imageThree;
     }
+
+    public Bitmap getImageOne() {
+        return imageOne;
+    }
+
+    public Bitmap getImageTwo() {
+        return imageTwo;
+    }
+
+    public Bitmap getImageThree() {
+        return imageThree;
+    }
 }
