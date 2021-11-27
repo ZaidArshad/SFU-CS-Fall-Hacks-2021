@@ -5,6 +5,7 @@ public class GameManager {
     private Board board;
     private Player player1;
     private Player player2;
+    private int currentTurn;
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
     public static final int NO_WINNER = 0;
@@ -32,6 +33,17 @@ public class GameManager {
 
     public Player getPlayer2() {
         return player2;
+    }
+
+    private int getCurrentTurn() {
+        return currentTurn;
+    }
+
+    private boolean placePiece(int col, int row, Piece piece) {
+        boolean eaten = board.placePiece(col,row,piece);
+        if (piece.getPlayer() == PLAYER_1) currentTurn = PLAYER_2;
+        else currentTurn = PLAYER_1;
+        return eaten;
     }
 
     /**
