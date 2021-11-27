@@ -22,4 +22,5 @@ SFU -> mod -> video game -> tic-tac-toe
 References: 
 
 Game inspiration from boardgame "Gobblet Gobblers"
+
 App icon: https://image.shutterstock.com/image-vector/hungry-emoticon-260nw-70876951.jpg
