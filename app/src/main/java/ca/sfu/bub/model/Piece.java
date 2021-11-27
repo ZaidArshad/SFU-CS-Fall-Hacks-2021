@@ -23,16 +23,28 @@ public class Piece {
         return this.size;
     }
 
+    public boolean isUsed() {
+        return this.isUsed;
+    }
+
+    public int getXPos() {
+        return this.xPos;
+    }
+
+    public int getYPos() {
+        return this.yPos;
+    }
+
     // setters
     public void setUsed(boolean isUsed) {
         this.isUsed = isUsed;
     }
 
-    public void setXPos(boolean isUsed) {
-        this.isUsed = isUsed;
+    public void setXPos(int row) {
+        this.xPos = row;
     }
 
-    public void setYPos(boolean isUsed) {
-        this.isUsed = isUsed;
+    public void setYPos(int col) {
+        this.yPos = col;
     }
 }
