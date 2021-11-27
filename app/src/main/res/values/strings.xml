@@ -9,4 +9,5 @@
     <string name="less_than"><![CDATA[<]]></string>
     <string name="player_2_token">player 2 token</string>
     <string name="image_view_for_the_board_pos">image view for the board pos</string>
+    <string name="input_3_images_and_then_press_save_images">Input 3 images and then press \'SAVE IMAGES\'</string>
 </resources>
