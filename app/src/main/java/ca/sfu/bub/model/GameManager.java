@@ -1,4 +1,47 @@
 package ca.sfu.bub.model;
 
 public class GameManager {
+    private static GameManager instance;
+    private Board board;
+    private Player player1;
+    private Player player2;
+    public static final int PLAYER_1 = 1;
+    public static final int PLAYER_2 = 2;
+    public static final int NO_WINNER = 0;
+
+    public static GameManager getInstance() {
+        if (instance == null) {
+            instance = new GameManager();
+        }
+        return instance;
+    }
+
+    private GameManager() {
+        this.board = new Board();
+        this.player1 = new Player();
+        this.player2 = new Player();
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    /**
+     * Gets the winner of the game if there is one
+     * @return
+     *      PLAYER_1 (1) if player 1 wins
+     *      PLAYER_2 (2) if player 2 wins
+     *      NO_WINNER (0) if no one has won yet
+     */
+    public int getWinner() {
+        return board.checkWinner();
+    }
 }
