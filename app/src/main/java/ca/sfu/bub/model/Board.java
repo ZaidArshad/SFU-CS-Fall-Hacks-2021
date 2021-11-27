@@ -10,6 +10,7 @@ public class Board {
     public static final int NO_WINNER = 0;
 
     public Board() {
+        boardSpots = new BoardSpot[3][3];
         for (int col = 0; col < 3; col++) {
             for (int row = 0; row < 3; row++) {
                 boardSpots[col][row] = new BoardSpot();
