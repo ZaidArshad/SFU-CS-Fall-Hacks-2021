@@ -58,6 +58,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/lessThan1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/less_than"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/userImage1"
+        app:layout_constraintEnd_toStartOf="@+id/userImage2"
+        app:layout_constraintStart_toEndOf="@+id/userImage1"
+        app:layout_constraintTop_toTopOf="@+id/userImage1" />
+
+    <TextView
+        android:id="@+id/lessThan2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/less_than"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/userImage3"
+        app:layout_constraintEnd_toStartOf="@+id/userImage3"
+        app:layout_constraintStart_toEndOf="@+id/userImage2"
+        app:layout_constraintTop_toTopOf="@+id/userImage3" />
+
     <Button
         android:id="@+id/start_game_btn"
         android:layout_width="wrap_content"
