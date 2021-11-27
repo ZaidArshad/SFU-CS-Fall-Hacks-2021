@@ -34,9 +34,9 @@ public class GameScreen extends AppCompatActivity {
                 findViewById(R.id.ivPos9),
         };
 
-//        for (ImageView imageView: ivPositions) {
-//            imageView.setBackground(AppCompatResources.getDrawable(this, R.drawable.player2_circle));
-//        }
+        for (ImageView imageView: ivPositions) {
+            imageView.setBackground(AppCompatResources.getDrawable(this, R.drawable.player2_circle));
+        }
 
     }
 
