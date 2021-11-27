@@ -1,5 +1,8 @@
 package ca.sfu.bub.model;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+
 public class GameManager {
     private static GameManager instance;
     private Board board;
@@ -9,18 +12,21 @@ public class GameManager {
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
     public static final int NO_WINNER = 0;
+    private Bitmap imageOne;
+    private Bitmap imageTwo;
+    private Bitmap imageThree;
 
-    public static GameManager getInstance() {
-        if (instance == null) {
-            instance = new GameManager();
-        }
-        return instance;
-    }
-
-    private GameManager() {
+    private GameManager(Context context) {
         this.board = new Board();
         this.player1 = new Player(PLAYER_1);
         this.player2 = new Player(PLAYER_2);
+    }
+
+    public static GameManager getInstance(Context context) {
+        if (instance == null) {
+            instance = new GameManager(context);
+        }
+        return instance;
     }
 
     public Board getBoard() {
@@ -55,5 +61,17 @@ public class GameManager {
      */
     public int getWinner() {
         return board.checkWinner();
+    }
+
+    public void setImageOne(Bitmap imageOne) {
+        this.imageOne = imageOne;
+    }
+
+    public void setImageTwo(Bitmap imageTwo) {
+        this.imageTwo = imageTwo;
+    }
+
+    public void setImageThree(Bitmap imageThree) {
+        this.imageThree = imageThree;
     }
 }
