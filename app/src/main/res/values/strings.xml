@@ -2,4 +2,11 @@
     <string name="app_name">tempsfuhacksname</string>
     <string name="save_images">Save Images</string>
     <string name="start_game">Start Game</string>
+    <string name="tic_tac_toe_background">tic tac toe background</string>
+    <string name="player_x_s_turn">Player X\'s Turn</string>
+    <string name="player_1_s_turn">Player 1\'s Turn</string>
+    <string name="player_1_token">player 1 token</string>
+    <string name="less_than"><![CDATA[<]]></string>
+    <string name="player_2_token">player 2 token</string>
+    <string name="image_view_for_the_board_pos">image view for the board pos</string>
 </resources>

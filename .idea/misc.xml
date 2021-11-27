@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/zaidy/AndroidStudioProjects/tempsfuhacksname/app/src/main/res/drawable/boardlines.xml" value="0.3141025641025641" />
+        <entry key="..\:/Users/zaidy/AndroidStudioProjects/tempsfuhacksname/app/src/main/res/drawable/circle.xml" value="0.25" />
+        <entry key="..\:/Users/zaidy/AndroidStudioProjects/tempsfuhacksname/app/src/main/res/drawable/player1_circle.xml" value="0.1829059829059829" />
+        <entry key="..\:/Users/zaidy/AndroidStudioProjects/tempsfuhacksname/app/src/main/res/drawable/player2_circle.xml" value="0.310126582278481" />
         <entry key="..\:/Users/zaidy/AndroidStudioProjects/tempsfuhacksname/app/src/main/res/layout/activity_game_screen.xml" value="0.25" />
         <entry key="..\:/Users/zaidy/AndroidStudioProjects/tempsfuhacksname/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
       </map>

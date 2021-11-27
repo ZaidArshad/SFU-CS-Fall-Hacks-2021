@@ -4,7 +4,405 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/player1"
     tools:context=".activities.GameScreen">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelineY"
+        app:layout_constraintGuide_percent="0.50"
+        android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelineX"
+        app:layout_constraintGuide_percent="0.50"
+        android:orientation="horizontal"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelineTop"
+        app:layout_constraintGuide_percent="0.3"
+        android:orientation="horizontal"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guidelineBot"
+        app:layout_constraintGuide_percent="0.7"
+        android:orientation="horizontal"/>
+
+    <TextView
+        android:id="@+id/tvPlayerTurn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="1dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/player_1_s_turn"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPos1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/tic_tac_top"
+        app:layout_constraintEnd_toStartOf="@+id/tic_tac_left"
+        android:contentDescription="@string/image_view_for_the_board_pos"/>
+
+    <ImageView
+        android:id="@+id/ivPos2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tic_tac_top"
+        app:layout_constraintEnd_toStartOf="@+id/tic_tac_right"
+        app:layout_constraintStart_toEndOf="@+id/tic_tac_left"
+        android:contentDescription="@string/image_view_for_the_board_pos"/>
+
+    <ImageView
+        android:id="@+id/ivPos3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tic_tac_top"
+        app:layout_constraintStart_toEndOf="@+id/tic_tac_right"
+        android:contentDescription="@string/image_view_for_the_board_pos"/>
+
+    <ImageView
+        android:id="@+id/ivPos4"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tic_tac_bot"
+        app:layout_constraintEnd_toStartOf="@+id/tic_tac_left"
+        app:layout_constraintTop_toBottomOf="@+id/tic_tac_top"
+        android:contentDescription="@string/image_view_for_the_board_pos"
+        />
+
+    <ImageView
+        android:id="@+id/ivPos5"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tic_tac_bot"
+        app:layout_constraintEnd_toStartOf="@+id/tic_tac_right"
+        app:layout_constraintStart_toEndOf="@+id/tic_tac_left"
+        app:layout_constraintTop_toBottomOf="@+id/tic_tac_top"
+        android:contentDescription="@string/image_view_for_the_board_pos" />
+
+    <ImageView
+        android:id="@+id/ivPos6"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:contentDescription="@string/image_view_for_the_board_pos"
+        app:layout_constraintBottom_toTopOf="@+id/tic_tac_bot"
+        app:layout_constraintStart_toEndOf="@+id/tic_tac_right"
+        app:layout_constraintTop_toBottomOf="@+id/tic_tac_top" />
+
+    <ImageView
+        android:id="@+id/ivPos7"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:contentDescription="@string/image_view_for_the_board_pos"
+        app:layout_constraintEnd_toStartOf="@+id/tic_tac_left"
+        app:layout_constraintTop_toBottomOf="@+id/tic_tac_bot" />
+
+    <ImageView
+        android:id="@+id/ivPos8"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:contentDescription="@string/image_view_for_the_board_pos"
+        app:layout_constraintEnd_toStartOf="@+id/tic_tac_right"
+        app:layout_constraintStart_toEndOf="@+id/tic_tac_left"
+        app:layout_constraintTop_toBottomOf="@+id/tic_tac_bot" />
+
+
+    <ImageView
+        android:id="@+id/ivPos9"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:contentDescription="@string/image_view_for_the_board_pos"
+        app:layout_constraintStart_toEndOf="@+id/tic_tac_right"
+        app:layout_constraintTop_toBottomOf="@+id/tic_tac_bot" />
+
+    <ImageView
+        android:id="@+id/player1border"
+        android:layout_width="300dp"
+        android:layout_height="7dp"
+        android:alpha="0.3"
+        android:layout_marginTop="75dp"
+        android:background="@color/white"
+        android:contentDescription="@string/tic_tac_toe_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBot" />
+
+
+    <ImageView
+        android:id="@+id/player2border"
+        android:layout_width="300dp"
+        android:layout_height="7dp"
+        android:alpha="0.3"
+        android:layout_marginBottom="75dp"
+        android:background="@color/white"
+        android:contentDescription="@string/tic_tac_toe_background"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/tic_tac_top"
+        android:layout_width="350dp"
+        android:layout_height="7dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/board"
+        android:contentDescription="@string/tic_tac_toe_background"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/tic_tac_bot"
+        android:layout_width="350dp"
+        android:layout_height="7dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/board"
+        android:contentDescription="@string/tic_tac_toe_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineX" />
+
+    <ImageView
+        android:id="@+id/tic_tac_left"
+        android:layout_width="7dp"
+        android:layout_height="350dp"
+        android:layout_marginEnd="60dp"
+        android:background="@color/board"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineY"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/tic_tac_toe_background" />
+
+    <ImageView
+        android:id="@+id/tic_tac_right"
+        android:layout_width="7dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="60dp"
+        android:background="@color/board"
+        android:contentDescription="@string/tic_tac_toe_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineY"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPlayer1_S_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:contentDescription="@string/player_1_token"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayer1_M_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1border" />
+
+    <ImageView
+        android:id="@+id/ivPlayer1_S_2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/black"
+        android:contentDescription="@string/player_1_token"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayer1_M_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1border" />
+
+    <ImageView
+        android:id="@+id/ivPlayer1_M_1"
+        android:background="@color/white"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1border"
+        android:contentDescription="@string/player_1_token" />
+
+    <ImageView
+        android:id="@+id/ivPlayer1_M_2"
+        android:background="@color/black"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1border"
+        android:contentDescription="@string/player_1_token" />
+
+    <ImageView
+        android:id="@+id/ivPlayer1_B_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:contentDescription="@string/player_1_token"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayer1_M_1"
+        app:layout_constraintTop_toBottomOf="@+id/player1border" />
+
+    <ImageView
+        android:id="@+id/ivPlayer1_B_2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/black"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/player_1_token"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayer1_M_1"
+        app:layout_constraintTop_toBottomOf="@+id/player1border" />
+
+    <TextView
+        android:id="@+id/lessThan1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/less_than"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPlayer1_S_2"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayer1_M_2"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayer1_S_2"
+        app:layout_constraintTop_toTopOf="@+id/ivPlayer1_S_1" />
+
+    <TextView
+        android:id="@+id/lessThan2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/less_than"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPlayer1_S_2"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayer1_B_1"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayer1_M_1"
+        app:layout_constraintTop_toTopOf="@+id/ivPlayer1_S_1" />
+
+    <ImageView
+        android:id="@+id/ivPlayer2_S_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:contentDescription="@string/player_2_token"
+        app:layout_constraintBottom_toTopOf="@+id/player2border"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayer1_M_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPlayer2_S_2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/black"
+        android:contentDescription="@string/player_1_token"
+        app:layout_constraintBottom_toTopOf="@+id/player2border"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayer1_M_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPlayer2_M_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:contentDescription="@string/player_2_token"
+        app:layout_constraintBottom_toTopOf="@+id/player2border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPlayer2_M_2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/black"
+        android:contentDescription="@string/player_1_token"
+        app:layout_constraintBottom_toTopOf="@+id/player2border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPlayer2_L_1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:contentDescription="@string/player_2_token"
+        app:layout_constraintBottom_toTopOf="@+id/player2border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayer2_M_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivPlayer2_L_2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/black"
+        android:contentDescription="@string/player_1_token"
+        app:layout_constraintBottom_toTopOf="@+id/player2border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayer2_M_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lessThan3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/less_than"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPlayer2_S_2"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayer2_M_1"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayer2_S_1"
+        app:layout_constraintTop_toTopOf="@+id/ivPlayer2_S_1" />
+
+    <TextView
+        android:id="@+id/lessThan4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/less_than"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPlayer2_L_2"
+        app:layout_constraintEnd_toStartOf="@+id/ivPlayer2_L_1"
+        app:layout_constraintStart_toEndOf="@+id/ivPlayer2_M_1"
+        app:layout_constraintTop_toTopOf="@+id/ivPlayer2_L_1" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
