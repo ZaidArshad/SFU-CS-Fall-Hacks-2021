@@ -1,10 +1,9 @@
 package ca.sfu.bub.model;
 
 public class Player {
-    // fields
-    private Piece[] pieces;
 
-    // constructors
+    private final Piece[] pieces;
+
     public Player(int playerNumber){
         pieces = new Piece[6];
         for(int i=0; i<6; i+=2){
@@ -13,7 +12,6 @@ public class Player {
         }
     }
 
-    // getters
     public Piece[] getPieces() {
         return this.pieces;
     }
