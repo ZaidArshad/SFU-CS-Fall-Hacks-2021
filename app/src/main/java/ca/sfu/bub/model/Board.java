@@ -2,15 +2,9 @@ package ca.sfu.bub.model;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import ca.sfu.bub.activities.ImageActivity;
 
 public class Board {
-    private BoardSpot[][] boardSpots;
+    private final BoardSpot[][] boardSpots;
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
     public static final int NO_WINNER = 0;

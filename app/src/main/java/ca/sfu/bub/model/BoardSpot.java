@@ -6,7 +6,7 @@ import android.widget.ImageView;
 public class BoardSpot {
     private Boolean isOccupied;
     private Piece currentPiece;
-    private ImageView image;
+    private final ImageView image;
     private Integer row;
     private Integer col;
 

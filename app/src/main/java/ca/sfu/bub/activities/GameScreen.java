@@ -1,8 +1,6 @@
 package ca.sfu.bub.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.content.res.AppCompatResources;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,9 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.util.Random;
-
 import ca.sfu.bub.R;
 import ca.sfu.bub.model.Board;
 import ca.sfu.bub.model.BoardSpot;
@@ -21,9 +17,8 @@ import ca.sfu.bub.model.Piece;
 import ca.sfu.bub.model.Player;
 
 public class GameScreen extends AppCompatActivity {
-    private ImageView ivPositions[];
-    private ImageView playerOnePieces[];
-    private ImageView playerTwoPieces[];
+    private ImageView[] playerOnePieces;
+    private ImageView[] playerTwoPieces;
     private GameManager gameManager;
     private Bitmap imageOne;
     private Bitmap imageTwo;
@@ -204,7 +199,7 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void populatePositions() {
-        ivPositions = new ImageView[] {
+        ImageView[] ivPositions = new ImageView[]{
                 findViewById(R.id.ivPos1),
                 findViewById(R.id.ivPos2),
                 findViewById(R.id.ivPos3),
@@ -215,10 +210,6 @@ public class GameScreen extends AppCompatActivity {
                 findViewById(R.id.ivPos8),
                 findViewById(R.id.ivPos9),
         };
-
-        for (ImageView imageView: ivPositions) {
-            imageView.setBackground(AppCompatResources.getDrawable(this, R.drawable.player2_circle));
-        }
 
         gameBoard = new Board(ivPositions);
 

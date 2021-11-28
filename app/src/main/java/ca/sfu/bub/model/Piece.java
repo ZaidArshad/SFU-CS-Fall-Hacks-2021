@@ -1,22 +1,18 @@
 package ca.sfu.bub.model;
 
-import android.graphics.Bitmap;
-
 public class Piece {
-    // fields
+
     private final int size;
     private final int owner;
     private boolean isUsed;
     private int xPos;
     private int yPos;
 
-    // constructor
     public Piece(int size, int owner) {
         this.size = size;
         this.owner = owner;
     }
 
-    // getters
     public int getPlayer() {
         return this.owner;
     }
@@ -37,7 +33,6 @@ public class Piece {
         return this.yPos;
     }
 
-    // setters
     public void setUsed(boolean isUsed) {
         this.isUsed = isUsed;
     }
