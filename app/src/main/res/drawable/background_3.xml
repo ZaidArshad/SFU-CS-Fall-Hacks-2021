@@ -5,7 +5,7 @@
             <gradient
                 android:angle="-90"
                 android:startColor="@color/both_players"
-                android:endColor="@color/player2"
+                android:endColor="@color/player1"
                 />
         </shape>
     </item>

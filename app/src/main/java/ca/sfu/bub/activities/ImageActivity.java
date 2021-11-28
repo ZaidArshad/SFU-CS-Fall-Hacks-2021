@@ -49,6 +49,7 @@ public class ImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setTitle("Choose or take 3 images");
+        GameManager.newInstance(this);
         gameManager = GameManager.getInstance(this);
 
         numImages = 0;

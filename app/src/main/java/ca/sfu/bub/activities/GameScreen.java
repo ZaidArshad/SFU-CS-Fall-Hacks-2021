@@ -1,13 +1,20 @@
 package ca.sfu.bub.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Random;
 import ca.sfu.bub.R;
@@ -32,6 +39,8 @@ public class GameScreen extends AppCompatActivity {
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
 
+    private TextView tvPlayerTurn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +51,9 @@ public class GameScreen extends AppCompatActivity {
         gameManager = GameManager.getInstance(this);
         playerOne = gameManager.getPlayer1();
         playerTwo = gameManager.getPlayer2();
+        tvPlayerTurn = findViewById(R.id.tvPlayerTurn);
 
+        setBackground();
         initializeTurn();
         setUpImages();
         populatePositions();
@@ -51,17 +62,26 @@ public class GameScreen extends AppCompatActivity {
         setOnClickBoardSpots();
     }
 
+    private void setBackground() {
+        ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
+    }
+
+    @SuppressLint("SetTextI18n")
     private void initializeTurn() {
         Random rand = new Random();
         int result = rand.nextInt(2);
 
         if (result == 0) {
             gameManager.setCurrentTurn(PLAYER_1);
-            Toast.makeText(GameScreen.this, "Player 1's turn",Toast.LENGTH_SHORT).show();
+            showNextTurn();
         }
         else {
             gameManager.setCurrentTurn(PLAYER_2);
-            Toast.makeText(GameScreen.this, "Player 2's turn",Toast.LENGTH_SHORT).show();
+            showNextTurn();
         }
     }
 
@@ -81,9 +101,9 @@ public class GameScreen extends AppCompatActivity {
                         if (spots[finalCol][finalRow].getOccupied()) {
                             //if current piece is smaller than chosen piece
                             if (spots[finalCol][finalRow].getCurrentPiece().getSize() < chosenPiece.getSize()) {
-                                Toast.makeText(GameScreen.this, "Piece placed!",Toast.LENGTH_SHORT).show();
                                 gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()), gameManager.getCurrentTurn());
                                 gameManager.swapTurns();
+                                showNextTurn();
                                 if (gameBoard.checkWinner() == 1) {
                                     Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
                                     gameManager.setGameWinner(1);
@@ -99,15 +119,16 @@ public class GameScreen extends AppCompatActivity {
                                     gameManager.setGameWinner(0);
                                     finish();
                                 }
+                                chosenPiece.setUsed(true);
                             }
                             else {
                                 Toast.makeText(GameScreen.this, "Cannot place piece here!",Toast.LENGTH_SHORT).show();
                             }
                         }
                         else {
-                            Toast.makeText(GameScreen.this, "Piece placed!",Toast.LENGTH_SHORT).show();
                             gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()), gameManager.getCurrentTurn());
                             gameManager.swapTurns();
+                            showNextTurn();
                             if (gameBoard.checkWinner() == 1) {
                                 Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
                                 gameManager.setGameWinner(1);
@@ -126,8 +147,8 @@ public class GameScreen extends AppCompatActivity {
                                 startActivity(EndActivity.makeIntent(this));
                                 finish();
                             }
+                            chosenPiece.setUsed(true);
                         }
-                        chosenPiece.setUsed(true);
                     }
                     else {
                         Toast.makeText(GameScreen.this, "Choose another piece!",Toast.LENGTH_SHORT).show();
@@ -138,6 +159,19 @@ public class GameScreen extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    private void showNextTurn() {
+        if (gameManager.getCurrentTurn() == PLAYER_1) {
+            tvPlayerTurn.setText("Player 1's Turn");
+            appearFadeOut(tvPlayerTurn);
+        }
+        else {
+            tvPlayerTurn.setText("Player 2's Turn");
+            appearFadeOut(tvPlayerTurn);
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     private void setOnClickPieces() {
         for (int i = 0; i < playerOnePieces.length; i++) {
             int finalI = i;
@@ -150,7 +184,7 @@ public class GameScreen extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(GameScreen.this, "Player 2's turn",Toast.LENGTH_SHORT).show();
+                    showNextTurn();
                 }
             });
         }
@@ -166,7 +200,7 @@ public class GameScreen extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(GameScreen.this, "Player 1's turn",Toast.LENGTH_SHORT).show();
+                    showNextTurn();
                 }
             });
         }
@@ -239,6 +273,30 @@ public class GameScreen extends AppCompatActivity {
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, GameScreen.class);
+    }
+
+    private void appearFadeOut(View view) {
+        view.setVisibility(View.VISIBLE);
+        Animation fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+        fadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                view.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        view.setAnimation(fadeOut);
+        view.animate();
+
     }
 
 }
