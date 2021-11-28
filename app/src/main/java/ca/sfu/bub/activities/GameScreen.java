@@ -153,7 +153,7 @@ public class GameScreen extends AppCompatActivity {
                     else {
                         Toast.makeText(GameScreen.this, "Choose another piece!",Toast.LENGTH_SHORT).show();
                     }
-
+                    Toast.makeText(GameScreen.this, ""+gameBoard.checkWinner(),Toast.LENGTH_SHORT).show();
                 });
             }
         }
