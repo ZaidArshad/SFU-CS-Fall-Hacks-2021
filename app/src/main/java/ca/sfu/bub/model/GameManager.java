@@ -67,10 +67,6 @@ public class GameManager {
         this.gameWinner = gameWinner;
     }
 
-    public boolean checkIfNoPieces() {
-        return player1.getPieces().length == 0 && player2.getPieces().length == 0;
-    }
-
     public int getGameWinner() {
         return gameWinner;
     }

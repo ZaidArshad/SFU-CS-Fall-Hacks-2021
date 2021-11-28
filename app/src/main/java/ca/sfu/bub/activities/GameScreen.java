@@ -74,24 +74,6 @@ public class GameScreen extends AppCompatActivity {
         return true;
     }
 
-    private void checkWinner() {
-        if (gameBoard.checkWinner() == PLAYER_1) {
-            Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
-            gameManager.setGameWinner(PLAYER_1);
-            finish();
-        }
-        else if (gameBoard.checkWinner() == PLAYER_2) {
-            Toast.makeText(GameScreen.this, "Player 2 won!",Toast.LENGTH_SHORT).show();
-            gameManager.setGameWinner(PLAYER_2);
-            finish();
-        }
-        else if (gameBoard.checkWinner() == NO_WINNER && checkIfAllPiecesUsed()) {
-            Toast.makeText(GameScreen.this, "It's a draw!",Toast.LENGTH_SHORT).show();
-            gameManager.setGameWinner(NO_WINNER);
-            finish();
-        }
-    }
-
     private void setBackground() {
         ConstraintLayout constraintLayout = findViewById(R.id.mainLayout);
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
@@ -135,7 +117,24 @@ public class GameScreen extends AppCompatActivity {
                                 chosenPiece.setUsed(true);
                                 gameManager.swapTurns();
                                 showNextTurn();
-                                checkWinner();
+                                if (gameBoard.checkWinner() == 1) {
+                                    Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
+                                    gameManager.setGameWinner(1);
+                                    startActivity(EndActivity.makeIntent(this));
+                                    finish();
+                                }
+                                else if (gameBoard.checkWinner() == 2) {
+                                    Toast.makeText(GameScreen.this, "Player 2 won!",Toast.LENGTH_SHORT).show();
+                                    gameManager.setGameWinner(2);
+                                    startActivity(EndActivity.makeIntent(this));
+                                    finish();
+                                }
+                                else if (gameBoard.checkWinner() == 0 && checkIfAllPiecesUsed()) {
+                                    Toast.makeText(GameScreen.this, "It's a draw!",Toast.LENGTH_SHORT).show();
+                                    gameManager.setGameWinner(0);
+                                    startActivity(EndActivity.makeIntent(this));
+                                    finish();
+                                }
                             }
                             else {
                                 Toast.makeText(GameScreen.this, "Cannot place piece here!",Toast.LENGTH_SHORT).show();
@@ -146,7 +145,24 @@ public class GameScreen extends AppCompatActivity {
                             chosenPiece.setUsed(true);
                             gameManager.swapTurns();
                             showNextTurn();
-                            checkWinner();
+                            if (gameBoard.checkWinner() == 1) {
+                                Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
+                                gameManager.setGameWinner(1);
+                                startActivity(EndActivity.makeIntent(this));
+                                finish();
+                            }
+                            else if (gameBoard.checkWinner() == 2) {
+                                Toast.makeText(GameScreen.this, "Player 2 won!",Toast.LENGTH_SHORT).show();
+                                gameManager.setGameWinner(2);
+                                startActivity(EndActivity.makeIntent(this));
+                                finish();
+                            }
+                            else if (gameBoard.checkWinner() == 0 && checkIfAllPiecesUsed()) {
+                                Toast.makeText(GameScreen.this, "It's a draw!",Toast.LENGTH_SHORT).show();
+                                gameManager.setGameWinner(0);
+                                startActivity(EndActivity.makeIntent(this));
+                                finish();
+                            }
                         }
                     }
                     else {
