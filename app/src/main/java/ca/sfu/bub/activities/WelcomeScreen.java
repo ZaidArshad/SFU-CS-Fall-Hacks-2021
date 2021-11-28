@@ -19,6 +19,7 @@ public class WelcomeScreen extends AppCompatActivity {
         if (getSupportActionBar() != null) getSupportActionBar().hide();
 
         fadeIn(findViewById(R.id.tvAppTitle));
+        fadeIn(findViewById(R.id.tvNames));
         Handler loadingHandler = new Handler();
         loadingHandler.postDelayed(this::startImageSelection, 4000);
 
