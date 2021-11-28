@@ -50,30 +50,36 @@ public class Board {
      *      NO_WINNER (0) if no one has won yet
      */
     public int checkWinner() {
-
-        // Check for arrangements vertically
         int player1Count = 0;
         int player2Count = 0;
-        for (int col = 0; col < 3; col++) {
-            int owner = belongToPlayer(boardSpots[col][0]);
-            if (owner == PLAYER_1) player1Count++;
-            else if (owner == PLAYER_2) player2Count++;
-            else if (owner == NO_WINNER) break;
+
+        // Check for arrangements vertically
+        for (int row = 0; row < 3; row++) {
+            player1Count = 0;
+            player2Count = 0;
+            for (int col = 0; col < 3; col++) {
+                int owner = belongToPlayer(boardSpots[col][row]);
+                if (owner == PLAYER_1) player1Count++;
+                else if (owner == PLAYER_2) player2Count++;
+                else if (owner == NO_WINNER) break;
+            }
+            if (player1Count == 3) return PLAYER_1;
+            else if (player2Count == 3) return PLAYER_2;
         }
-        if (player1Count == 3) return PLAYER_1;
-        else if (player2Count == 3) return PLAYER_2;
 
         // Check for arrangements horizontally
-        player1Count = 0;
-        player2Count = 0;
-        for (int row = 0; row < 3; row++) {
-            int owner = belongToPlayer(boardSpots[0][row]);
-            if (owner == PLAYER_1) player1Count++;
-            else if (owner == PLAYER_2) player2Count++;
-            else if (owner == NO_WINNER) break;
+        for (int col = 0; col < 3; col++) {
+            player1Count = 0;
+            player2Count = 0;
+            for (int row = 0; row < 3; row++) {
+                int owner = belongToPlayer(boardSpots[col][row]);
+                if (owner == PLAYER_1) player1Count++;
+                else if (owner == PLAYER_2) player2Count++;
+                else if (owner == NO_WINNER) break;
+            }
+            if (player1Count == 3) return PLAYER_1;
+            else if (player2Count == 3) return PLAYER_2;
         }
-        if (player1Count == 3) return PLAYER_1;
-        else if (player2Count == 3) return PLAYER_2;
 
         // Check for arrangement diagonally top left | mid | bot right
         player1Count = 0;
