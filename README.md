@@ -3,7 +3,7 @@ SFU-CS-Fall-Hacks-2021
 About
 -------------------------------------------
 
-SFU Gobbles is a game based around Tic-tac-toe and takes inspirtaion from the game Goblet Gobblers. 
+SFU Gobbles is an android game coded in a java based around Tic-tac-toe and takes inspirtaion from the game Goblet Gobblers. 
 To play the game one must take a picture of 3 SFU students to act as tokens. There are 6 tokens (2 of a kind). Each token has its own
 value from 1-3. If a token has a higher value that another than it can overwrite it on the tic-tac-toe board. Whomever gets 3 tokens of their own
 in a row/column/diagonally (similar to tic-tac-toe) wins the game.
