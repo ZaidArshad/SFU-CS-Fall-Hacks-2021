@@ -38,7 +38,7 @@ public class GameScreen extends AppCompatActivity {
     private boolean somethingPicked = false;
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
-
+    public static final int NO_WINNER = 0;
     private TextView tvPlayerTurn;
 
 
@@ -60,6 +60,36 @@ public class GameScreen extends AppCompatActivity {
         populatePlayerPieces();
         setOnClickPieces();
         setOnClickBoardSpots();
+        checkIfAllPiecesUsed();
+    }
+
+    private boolean checkIfAllPiecesUsed() {
+        Piece[] arrayOne = playerOne.getPieces();
+        Piece[] arrayTwo = playerTwo.getPieces();
+        for (int i = 0; i < arrayOne.length; i++) {
+            if (!arrayOne[i].isUsed() || !arrayTwo[i].isUsed()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void checkWinner() {
+        if (gameBoard.checkWinner() == PLAYER_1) {
+            Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
+            gameManager.setGameWinner(PLAYER_1);
+            finish();
+        }
+        else if (gameBoard.checkWinner() == PLAYER_2) {
+            Toast.makeText(GameScreen.this, "Player 2 won!",Toast.LENGTH_SHORT).show();
+            gameManager.setGameWinner(PLAYER_2);
+            finish();
+        }
+        else if (gameBoard.checkWinner() == NO_WINNER && checkIfAllPiecesUsed()) {
+            Toast.makeText(GameScreen.this, "It's a draw!",Toast.LENGTH_SHORT).show();
+            gameManager.setGameWinner(NO_WINNER);
+            finish();
+        }
     }
 
     private void setBackground() {
@@ -102,24 +132,10 @@ public class GameScreen extends AppCompatActivity {
                             //if current piece is smaller than chosen piece
                             if (spots[finalCol][finalRow].getCurrentPiece().getSize() < chosenPiece.getSize()) {
                                 gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()), gameManager.getCurrentTurn());
+                                chosenPiece.setUsed(true);
                                 gameManager.swapTurns();
                                 showNextTurn();
-                                if (gameBoard.checkWinner() == 1) {
-                                    Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
-                                    gameManager.setGameWinner(1);
-                                    finish();
-                                }
-                                else if (gameBoard.checkWinner() == 2) {
-                                    Toast.makeText(GameScreen.this, "Player 2 won!",Toast.LENGTH_SHORT).show();
-                                    gameManager.setGameWinner(2);
-                                    finish();
-                                }
-                                else if (gameManager.checkIfNoPieces()) {
-                                    Toast.makeText(GameScreen.this, "It's a draw!",Toast.LENGTH_SHORT).show();
-                                    gameManager.setGameWinner(0);
-                                    finish();
-                                }
-                                chosenPiece.setUsed(true);
+                                checkWinner();
                             }
                             else {
                                 Toast.makeText(GameScreen.this, "Cannot place piece here!",Toast.LENGTH_SHORT).show();
@@ -127,33 +143,16 @@ public class GameScreen extends AppCompatActivity {
                         }
                         else {
                             gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()), gameManager.getCurrentTurn());
+                            chosenPiece.setUsed(true);
                             gameManager.swapTurns();
                             showNextTurn();
-                            if (gameBoard.checkWinner() == 1) {
-                                Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
-                                gameManager.setGameWinner(1);
-                                startActivity(EndActivity.makeIntent(this));
-                                finish();
-                            }
-                            else if (gameBoard.checkWinner() == 2) {
-                                Toast.makeText(GameScreen.this, "Player 2 won!",Toast.LENGTH_SHORT).show();
-                                gameManager.setGameWinner(2);
-                                startActivity(EndActivity.makeIntent(this));
-                                finish();
-                            }
-                            else if (gameManager.checkIfNoPieces()) {
-                                Toast.makeText(GameScreen.this, "It's a draw!",Toast.LENGTH_SHORT).show();
-                                gameManager.setGameWinner(0);
-                                startActivity(EndActivity.makeIntent(this));
-                                finish();
-                            }
-                            chosenPiece.setUsed(true);
+                            checkWinner();
                         }
                     }
                     else {
                         Toast.makeText(GameScreen.this, "Choose another piece!",Toast.LENGTH_SHORT).show();
                     }
-
+                    Toast.makeText(GameScreen.this, ""+gameBoard.checkWinner(),Toast.LENGTH_SHORT).show();
                 });
             }
         }
