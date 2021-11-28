@@ -11,11 +11,8 @@ public class GameManager {
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
     public static final int NO_WINNER = 0;
-    private Bitmap imageOne;
-    private Bitmap imageTwo;
-    private Bitmap imageThree;
-
     private Bitmap[] images;
+    private int gameWinner;
 
     private GameManager(Context context) {
         this.player1 = new Player(PLAYER_1);
@@ -37,7 +34,7 @@ public class GameManager {
         return player2;
     }
 
-    private int getCurrentTurn() {
+    public int getCurrentTurn() {
         return currentTurn;
     }
 
@@ -49,17 +46,24 @@ public class GameManager {
         this.images = images;
     }
 
-    //----------------------------------------
-
-    public Bitmap getImageOne() {
-        return imageOne;
+    public void setCurrentTurn(int currentTurn) {
+        this.currentTurn = currentTurn;
     }
 
-    public Bitmap getImageTwo() {
-        return imageTwo;
+    public void swapTurns() {
+        if (currentTurn == PLAYER_1){
+            currentTurn = PLAYER_2;
+        }
+        else {
+            currentTurn = PLAYER_1;
+        }
     }
 
-    public Bitmap getImageThree() {
-        return imageThree;
+    public void setGameWinner(int gameWinner) {
+        this.gameWinner = gameWinner;
+    }
+
+    public boolean checkIfNoPieces() {
+        return player1.getPieces().length == 0 && player2.getPieces().length == 0;
     }
 }

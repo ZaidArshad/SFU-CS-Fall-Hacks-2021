@@ -1,9 +1,13 @@
 package ca.sfu.bub.model;
 
+import android.graphics.Bitmap;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import ca.sfu.bub.activities.ImageActivity;
 
 public class Board {
     private BoardSpot[][] boardSpots;
@@ -33,10 +37,14 @@ public class Board {
      * @param piece Piece to be placed
      * @return If the piece consumes another piece
      */
-    public boolean placePiece(int col, int row, Piece piece) {
+    public boolean placePiece(int col, int row, Piece piece, Bitmap image) {
         boolean result = false;
-        if (boardSpots[col][row].getOccupied()) result = true;
-        boardSpots[col][row].setCurrentPiece(piece);
+        if (boardSpots[col][row].getOccupied()) {
+            result = true;
+        }
+
+        boardSpots[col][row].setCurrentPiece(piece, image);
+
         return result;
     }
 

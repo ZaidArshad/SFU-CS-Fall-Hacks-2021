@@ -1,5 +1,6 @@
 package ca.sfu.bub.model;
 
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 public class BoardSpot {
@@ -25,13 +26,10 @@ public class BoardSpot {
         return currentPiece;
     }
 
-    public void setCurrentPiece(Piece currentPiece) {
+    public void setCurrentPiece(Piece currentPiece, Bitmap image) {
         this.currentPiece = currentPiece;
         isOccupied = true;
-    }
-
-    public void setImage(ImageView image) {
-        this.image = image;
+        this.image.setImageBitmap(image);
     }
 
     public ImageView getImage() {
