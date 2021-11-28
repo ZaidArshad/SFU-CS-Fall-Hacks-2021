@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,8 +28,10 @@ public class GameScreen extends AppCompatActivity {
     private Player playerOne;
     private Player playerTwo;
     private Board gameBoard;
+    private boolean somethingPicked = false;
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +73,16 @@ public class GameScreen extends AppCompatActivity {
                 int finalRow = row;
                 spots[col][row].getImage().setOnClickListener((v) -> {
 
-
-                    if (!chosenPiece.isUsed()) {
+                    if (chosenPiece == null) {
+                        Toast.makeText(GameScreen.this, "Please choose a piece",Toast.LENGTH_SHORT).show();
+                    }
+                    else if (!chosenPiece.isUsed()) {
                         //if spot is currently occupied
                         if (spots[finalCol][finalRow].getOccupied()) {
                             //if current piece is smaller than chosen piece
                             if (spots[finalCol][finalRow].getCurrentPiece().getSize() < chosenPiece.getSize()) {
                                 Toast.makeText(GameScreen.this, "Piece placed!",Toast.LENGTH_SHORT).show();
-                                gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()));
+                                gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()), gameManager.getCurrentTurn());
                                 gameManager.swapTurns();
                                 if (gameBoard.checkWinner() == 1) {
                                     Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
@@ -101,21 +106,24 @@ public class GameScreen extends AppCompatActivity {
                         }
                         else {
                             Toast.makeText(GameScreen.this, "Piece placed!",Toast.LENGTH_SHORT).show();
-                            gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()));
+                            gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()), gameManager.getCurrentTurn());
                             gameManager.swapTurns();
                             if (gameBoard.checkWinner() == 1) {
                                 Toast.makeText(GameScreen.this, "Player 1 won!",Toast.LENGTH_SHORT).show();
                                 gameManager.setGameWinner(1);
+                                startActivity(EndActivity.makeIntent(this));
                                 finish();
                             }
                             else if (gameBoard.checkWinner() == 2) {
                                 Toast.makeText(GameScreen.this, "Player 2 won!",Toast.LENGTH_SHORT).show();
                                 gameManager.setGameWinner(2);
+                                startActivity(EndActivity.makeIntent(this));
                                 finish();
                             }
                             else if (gameManager.checkIfNoPieces()) {
                                 Toast.makeText(GameScreen.this, "It's a draw!",Toast.LENGTH_SHORT).show();
                                 gameManager.setGameWinner(0);
+                                startActivity(EndActivity.makeIntent(this));
                                 finish();
                             }
                         }
@@ -135,8 +143,11 @@ public class GameScreen extends AppCompatActivity {
             int finalI = i;
             playerOnePieces[i].setOnClickListener((v) -> {
                 if (gameManager.getCurrentTurn() == PLAYER_1) {
-                    playerOnePieces[finalI].setVisibility(View.INVISIBLE);
-                    chosenPiece = playerOne.getPiece(finalI);
+                    if (!somethingPicked || chosenPiece.isUsed()) {
+                        playerOnePieces[finalI].setVisibility(View.INVISIBLE);
+                        chosenPiece = playerOne.getPiece(finalI);
+                        somethingPicked = true;
+                    }
                 }
                 else {
                     Toast.makeText(GameScreen.this, "Player 2's turn",Toast.LENGTH_SHORT).show();
@@ -148,8 +159,11 @@ public class GameScreen extends AppCompatActivity {
             int finalI = i;
             playerTwoPieces[i].setOnClickListener((v) -> {
                 if (gameManager.getCurrentTurn() == PLAYER_2) {
-                    playerTwoPieces[finalI].setVisibility(View.INVISIBLE);
-                    chosenPiece = playerTwo.getPiece(finalI);
+                    if (!somethingPicked || chosenPiece.isUsed()) {
+                        playerTwoPieces[finalI].setVisibility(View.INVISIBLE);
+                        chosenPiece = playerTwo.getPiece(finalI);
+                        somethingPicked = true;
+                    }
                 }
                 else {
                     Toast.makeText(GameScreen.this, "Player 1's turn",Toast.LENGTH_SHORT).show();
@@ -181,6 +195,10 @@ public class GameScreen extends AppCompatActivity {
         playerOnePieces[4].setImageBitmap(imageThree);
         playerOnePieces[5].setImageBitmap(imageThree);
 
+        for (ImageView imageView : playerOnePieces) {
+            imageView.setColorFilter(Color.argb(80, 255, 0, 0));
+        }
+
         playerTwoPieces = new ImageView[] {
                 findViewById(R.id.ivPlayer2_S_1),
                 findViewById(R.id.ivPlayer2_S_2),
@@ -189,6 +207,10 @@ public class GameScreen extends AppCompatActivity {
                 findViewById(R.id.ivPlayer2_L_1),
                 findViewById(R.id.ivPlayer2_L_2),
         };
+
+        for (ImageView imageView : playerTwoPieces) {
+            imageView.setColorFilter(Color.argb(80, 0, 0, 255));
+        }
 
         playerTwoPieces[0].setImageBitmap(imageOne);
         playerTwoPieces[1].setImageBitmap(imageOne);

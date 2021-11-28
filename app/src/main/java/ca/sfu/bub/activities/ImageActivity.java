@@ -272,6 +272,7 @@ public class ImageActivity extends AppCompatActivity {
         startBtn.setOnClickListener((v) -> {
             Intent intent = GameScreen.makeIntent(this);
             startActivity(intent);
+            finish();
         });
     }
 }

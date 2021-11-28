@@ -1,6 +1,7 @@
 package ca.sfu.bub.model;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.widget.ImageView;
 
 public class BoardSpot {
@@ -26,10 +27,13 @@ public class BoardSpot {
         return currentPiece;
     }
 
-    public void setCurrentPiece(Piece currentPiece, Bitmap image) {
+    public void setCurrentPiece(Piece currentPiece, Bitmap image, int turn) {
         this.currentPiece = currentPiece;
         isOccupied = true;
         this.image.setImageBitmap(image);
+        if (turn == GameManager.PLAYER_1) this.image.setColorFilter(Color.argb(80, 255, 0, 0));
+        if (turn == GameManager.PLAYER_2) this.image.setColorFilter(Color.argb(80, 0, 0, 255));
+
     }
 
     public ImageView getImage() {

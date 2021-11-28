@@ -30,6 +30,7 @@ public class EndActivity extends AppCompatActivity {
         btnPlayAgain.setOnClickListener((v) -> {
             Intent intent = ImageActivity.makeIntent(this);
             startActivity(intent);
+            finish();
         });
     }
 
@@ -43,9 +44,13 @@ public class EndActivity extends AppCompatActivity {
             tvWinner.setTextColor(getResources().getColor(R.color.player1));
             strWinner = "Player 1";
         }
-        else {
+        else if (winner == PLAYER_2) {
             tvWinner.setTextColor(getResources().getColor(R.color.player2));
             strWinner = "Player 2";
+        }
+        else {
+            tvWinner.setTextColor(getResources().getColor(R.color.both_players));
+            strWinner = "Draw";
         }
 
         tvWinner.setText(strWinner);

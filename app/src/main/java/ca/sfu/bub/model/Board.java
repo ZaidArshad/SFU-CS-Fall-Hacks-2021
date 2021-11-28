@@ -31,13 +31,13 @@ public class Board {
      * @param piece Piece to be placed
      * @return If the piece consumes another piece
      */
-    public boolean placePiece(int col, int row, Piece piece, Bitmap image) {
+    public boolean placePiece(int col, int row, Piece piece, Bitmap image, int turn) {
         boolean result = false;
         if (boardSpots[col][row].getOccupied()) {
             result = true;
         }
 
-        boardSpots[col][row].setCurrentPiece(piece, image);
+        boardSpots[col][row].setCurrentPiece(piece, image, turn);
 
         return result;
     }
