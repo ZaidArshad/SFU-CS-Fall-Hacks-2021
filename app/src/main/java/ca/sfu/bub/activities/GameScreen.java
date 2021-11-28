@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -40,6 +41,7 @@ public class GameScreen extends AppCompatActivity {
     public static final int PLAYER_2 = 2;
     public static final int NO_WINNER = 0;
     private TextView tvPlayerTurn;
+    private MediaPlayer buttonSound;
 
 
     @Override
@@ -53,6 +55,7 @@ public class GameScreen extends AppCompatActivity {
         playerTwo = gameManager.getPlayer2();
         tvPlayerTurn = findViewById(R.id.tvPlayerTurn);
 
+        setUpSounds();
         setBackground();
         initializeTurn();
         setUpImages();
@@ -114,6 +117,7 @@ public class GameScreen extends AppCompatActivity {
                             //if current piece is smaller than chosen piece
                             if (spots[finalCol][finalRow].getCurrentPiece().getSize() < chosenPiece.getSize()) {
                                 gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()), gameManager.getCurrentTurn());
+                                buttonSound.start();
                                 chosenPiece.setUsed(true);
                                 gameManager.swapTurns();
                                 showNextTurn();
@@ -307,4 +311,7 @@ public class GameScreen extends AppCompatActivity {
 
     }
 
+    private void setUpSounds() {
+        buttonSound = MediaPlayer.create(getApplicationContext(), R.raw.mc_eat_sound);
+    }
 }
