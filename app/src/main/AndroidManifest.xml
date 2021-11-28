@@ -21,10 +21,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tempsfuhacksname">
         <activity
+            android:name=".activities.EndActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.WelcomeScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

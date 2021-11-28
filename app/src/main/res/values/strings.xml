@@ -12,4 +12,7 @@
     <string name="input_3_images_and_then_press_save_images">Input 3 images and then press \'SAVE IMAGES\'</string>
     <string name="cancel">Cancel</string>
     <string name="selected_img">selected img</string>
+    <string name="winner">Winner</string>
+    <string name="player_x">Player X</string>
+    <string name="play_again">Play Again</string>
 </resources>

@@ -14,7 +14,7 @@ public class GameManager {
     private Bitmap[] images;
     private int gameWinner;
 
-    private GameManager(Context context) {
+    public GameManager(Context context) {
         this.player1 = new Player(PLAYER_1);
         this.player2 = new Player(PLAYER_2);
     }
@@ -24,6 +24,10 @@ public class GameManager {
             instance = new GameManager(context);
         }
         return instance;
+    }
+
+    public static void newInstance(Context context) {
+        instance = new GameManager(context);
     }
 
     public Player getPlayer1() {
@@ -65,5 +69,9 @@ public class GameManager {
 
     public boolean checkIfNoPieces() {
         return player1.getPieces().length == 0 && player2.getPieces().length == 0;
+    }
+
+    public int getGameWinner() {
+        return gameWinner;
     }
 }
