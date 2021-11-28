@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class ImageActivity extends AppCompatActivity {
     private ImageView bigImage;
     private Integer currentImage;
     private Integer numImages;
-
+    private MediaPlayer buttonSound;
     private Bitmap[] images;
 
     @Override
@@ -59,6 +60,7 @@ public class ImageActivity extends AppCompatActivity {
 
         bigImage = findViewById(R.id.ivSelectedImage);
 
+        setUpSound();
         setUpSaveImages();
         setUpChooseImages();
         setUpStartGameBtn();
@@ -70,6 +72,7 @@ public class ImageActivity extends AppCompatActivity {
         Button startBtn = findViewById(R.id.start_game_btn);
 
         saveBtn.setOnClickListener((v) -> {
+            buttonSound.start();
             byte[] imageOneByte = convertImageViewToByteArray(imageOne);
             byte[] imageTwoByte = convertImageViewToByteArray(imageTwo);
             byte[] imageThreeByte = convertImageViewToByteArray(imageThree);
@@ -92,6 +95,7 @@ public class ImageActivity extends AppCompatActivity {
         Button saveBtn = findViewById(R.id.save_imgs_btn);
 
         imageOne.setOnClickListener((v) -> {
+            buttonSound.start();
             currentImage = 1;
             chooseImage();
             numImages++;
@@ -102,6 +106,7 @@ public class ImageActivity extends AppCompatActivity {
         });
 
         imageTwo.setOnClickListener((v) -> {
+            buttonSound.start();
             currentImage = 2;
             chooseImage();
             numImages++;
@@ -112,6 +117,7 @@ public class ImageActivity extends AppCompatActivity {
         });
 
         imageThree.setOnClickListener((v) -> {
+            buttonSound.start();
             currentImage = 3;
             chooseImage();
             numImages++;
@@ -271,9 +277,14 @@ public class ImageActivity extends AppCompatActivity {
         Button startBtn = findViewById(R.id.start_game_btn);
         startBtn.setEnabled(false);
         startBtn.setOnClickListener((v) -> {
+            buttonSound.start();
             Intent intent = GameScreen.makeIntent(this);
             startActivity(intent);
             finish();
         });
+    }
+
+    private void setUpSound() {
+        buttonSound = MediaPlayer.create(getApplicationContext(), R.raw.mc_click_sound);
     }
 }

@@ -5,12 +5,11 @@ import android.graphics.Bitmap;
 
 public class GameManager {
     private static GameManager instance;
-    private Player player1;
-    private Player player2;
+    private final Player player1;
+    private final Player player2;
     private int currentTurn;
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
-    public static final int NO_WINNER = 0;
     private Bitmap[] images;
     private int gameWinner;
 

@@ -41,7 +41,7 @@ public class GameScreen extends AppCompatActivity {
     public static final int PLAYER_2 = 2;
     public static final int NO_WINNER = 0;
     private TextView tvPlayerTurn;
-    private MediaPlayer buttonSound;
+    private MediaPlayer eatSound;
 
 
     @Override
@@ -117,7 +117,7 @@ public class GameScreen extends AppCompatActivity {
                             //if current piece is smaller than chosen piece
                             if (spots[finalCol][finalRow].getCurrentPiece().getSize() < chosenPiece.getSize()) {
                                 gameBoard.placePiece(finalCol, finalRow, chosenPiece, gameManager.getImage(chosenPiece.getSize()), gameManager.getCurrentTurn());
-                                buttonSound.start();
+                                eatSound.start();
                                 chosenPiece.setUsed(true);
                                 gameManager.swapTurns();
                                 showNextTurn();
@@ -312,6 +312,6 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void setUpSounds() {
-        buttonSound = MediaPlayer.create(getApplicationContext(), R.raw.mc_eat_sound);
+        eatSound = MediaPlayer.create(getApplicationContext(), R.raw.mc_eat_sound);
     }
 }

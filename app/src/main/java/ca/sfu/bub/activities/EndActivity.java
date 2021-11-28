@@ -16,11 +16,14 @@ import ca.sfu.bub.model.GameManager;
 public class EndActivity extends AppCompatActivity {
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
+    private MediaPlayer buttonSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
+
+        buttonSound = MediaPlayer.create(getApplicationContext(), R.raw.mc_click_sound);
 
         setPlayAgainButton();
         setWinner();
@@ -35,6 +38,7 @@ public class EndActivity extends AppCompatActivity {
     private void setPlayAgainButton() {
         Button btnPlayAgain = findViewById(R.id.btnPlayAgain);
         btnPlayAgain.setOnClickListener((v) -> {
+            buttonSound.start();
             Intent intent = ImageActivity.makeIntent(this);
             startActivity(intent);
             finish();
