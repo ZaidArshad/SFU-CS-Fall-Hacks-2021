@@ -100,7 +100,7 @@
         android:layout_marginBottom="24dp"
         android:text="@string/input_3_images_and_then_press_save_images"
         android:textColor="@color/black"
-        android:textSize="19sp"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/save_imgs_btn"
         app:layout_constraintEnd_toEndOf="parent"
